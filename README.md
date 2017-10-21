@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/dannycroft/metricio/branches/master/badge.svg)](https://semaphoreci.com/dannycroft/metricio)
+
 ![Metricio](./src/assets/logo.png)
 
 Metricio is a dashboard framework that helps you display metrics and monitor systems and APIs.
