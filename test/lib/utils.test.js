@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { parseStatusCode, parseTime } as utils from '../../lib/utils';
+import { parseStatusCode, parseTime } from '../../lib/utils';
 
 test('parses times', async t => {
   const milliseconds = parseTime(500);
@@ -16,8 +16,6 @@ test('parses times', async t => {
 });
 
 test('parses status codes', async t => {
-  const parseStatusCode = utils.parseStatusCode;
-
   t.is(parseStatusCode(500), 'down', 'parsed status code was incorrect');
   t.is(parseStatusCode(200), 'up', 'parsed status code was incorrect');
 });

@@ -14,3 +14,4 @@ src/jobs/*
 
 src/dashboards/*
 !src/dashboards/index.jsx
+/coverage.lcov
