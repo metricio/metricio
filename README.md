@@ -1,4 +1,4 @@
-[![Build Status](https://semaphoreci.com/api/v1/dannycroft/metricio/branches/master/badge.svg)](https://semaphoreci.com/dannycroft/metricio)
+[![Build Status](https://semaphoreci.com/api/v1/dannycroft/metricio/branches/master/badge.svg)](https://semaphoreci.com/dannycroft/metricio) [![Maintainability](https://api.codeclimate.com/v1/badges/4118cd99d826d332002c/maintainability)](https://codeclimate.com/github/dannycroft/metricio/maintainability)
 
 ![Metricio](./src/assets/logo.png)
 
