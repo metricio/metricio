@@ -1,0 +1,17 @@
+{
+  "per-file": true,
+  "include": [
+    "src/**/*",
+    "lib/**/*"
+  ],
+  "exclude": [
+    "test/**/*",
+    "src/jobs/*",
+    "src/dashboards/*"
+  ],
+  "reporter": ["lcov", "text-summary", "html"],
+  "extension": [".js", ".jsx"],
+  "cache": true,
+  "all": true,
+  "report-dir": "./coverage"
+}

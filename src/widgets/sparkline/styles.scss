@@ -1,0 +1,23 @@
+.widget__sparkline {
+  background-color: #9c4274;
+
+  .widget__value {
+    z-index: 1;
+    padding-top: .75rem;
+  }
+
+  .sparkline {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: visible;
+
+    & > div {
+      position: absolute;
+      left: -20px;
+      right: -20px;
+      bottom: -230px;
+      opacity: 0.4;
+    }
+  }
+}

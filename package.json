@@ -1,0 +1,91 @@
+{
+  "name": "metricio",
+  "version": "1.0.0",
+  "description": "dashboard for displaying metrics easily",
+  "main": "app.js",
+  "scripts": {
+    "start": "babel-node app.js",
+    "build": "webpack -p --progress --colors",
+    "test": "ava test -v",
+    "lint": "eslint .",
+    "coverage": "nyc ava test"
+  },
+  "author": {
+    "name": "Danny Croft",
+    "email": "os@dannycroft.co.uk",
+    "url": "http://www.dannycroft.co.uk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dannycroft/metricio"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-resolver": "^1.1.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "classnames": "^2.2.5",
+    "connect-redis": "^3.3.0",
+    "css-loader": "^0.23.1",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.5",
+    "googleapis": "^20.1.0",
+    "ioredis": "^3.1.2",
+    "moment": "^2.19.1",
+    "node-resque": "^5.0.2",
+    "node-sass": "^4.5.3",
+    "node-schedule": "^1.2.5",
+    "numeral": "^2.0.6",
+    "prop-types": "^15.5.10",
+    "qs": "^6.5.0",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "react-sparklines": "^1.7.0",
+    "redis": "^2.6.0-1",
+    "request": "^2.71.0",
+    "request-promise-native": "^1.0.4",
+    "require-all": "^2.0.0",
+    "sass-loader": "^3.2.0",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "style-loader": "^0.13.1",
+    "webpack": "^3.8.1"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-15": "^1.0.2",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^11.3.0",
+    "mock-socket": "^7.0.0",
+    "nyc": "^11.2.1",
+    "proxyquire": "^1.8.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^15.6.2",
+    "sinon": "^4.0.1",
+    "webpack-dev-middleware": "^1.12.0"
+  },
+  "ava": {
+    "files": ["./test/**/*.test.js"],
+    "source": ["./test/**/*.{js,jsx}"],
+    "concurrency": 5,
+    "failFast": true,
+    "require": [
+      "babel-register",
+      "ignore-styles",
+      "./test/helpers/browser.js",
+      "./test/helpers/enzyme.js"
+    ],
+    "babel": "inherit"
+  }
+}

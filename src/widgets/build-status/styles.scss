@@ -1,0 +1,21 @@
+.widget__buildStatus {
+  .widget__value {
+    padding: 1.375rem 0 0;
+    font-size: 3.75rem;
+  }
+
+  &.widget--success {
+    background-color: #4cbf55;
+  }
+
+  &.widget--fail {
+    background-color: #f42a2a;
+  }
+}
+
+.widget__buildStatus.widget--medium {
+  .widget__value {
+    padding: 0.625rem 0 0;
+    font-size: 4.8rem;
+  }
+}

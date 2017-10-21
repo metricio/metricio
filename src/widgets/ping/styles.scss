@@ -1,0 +1,16 @@
+.widget__status {
+  background-color: #a7bda7;
+
+  .widget__value {
+    padding: .625rem 0;
+    font-size: 4.4rem;
+  }
+}
+
+.widget__status--up {
+  background-color: #ff9618;
+}
+
+.widget__status--down {
+  background-color: #f42a2a;
+}

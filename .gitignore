@@ -1,0 +1,16 @@
+node_modules
+dist
+npm-debug.log
+coverage
+.nyc_output
+
+config/*
+!config/index.js
+!config/paths.js
+
+src/jobs/*
+!src/jobs/*-example.js
+!src/jobs/demo.js
+
+src/dashboards/*
+!src/dashboards/index.jsx
