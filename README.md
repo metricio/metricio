@@ -21,54 +21,10 @@ Metricio allows you to:
 
 The UI aims to use little resource as possible. Enabling your dashboards to run without crashing for prolonged lengths of time on even the most neglected Raspberry Pi.
 
+####  See the [Docs](https://metricio.github.io/metricio-docs/) for more information
+
 ![Example](./src/assets/metricio.gif)
 
-### Requirements
-
-- Node v8.0.0+
-- Redis v2+
-
-### Get started
-
-```
-git clone https://github.com/dannycroft/metricio.git
-```
-
-```
-npm i && npm run start
-```
-
-Open your browser at `http://localhost:3000`
-
-### Storage
-
-If you have a specific Redis configuration then you can set the following environment variables, otherwise defaults will be used:
-
-- Host: `REDIS_SERVER_HOST`
-- Port: `REDIS_SERVER_PORT`
-- Password: `REDIS_SERVER_PASSWORD`
-
-### Customisation
-
-Everything you need can be found in [src](./src).
-
-- `./src/dasboards`: where all dashboards should be created. A [default](./src/dashboard.jsx) dasboard is already available for you to see. See [dashboards](#dashboards) for more infomation.
-- `./src/widgets`: contains all currently available widgets. You can create your own or use the [existing](./src/widgets) ones. See [widgets](#widgets) for more infomation.
-- `./src/jobs`: contains all currently available jobs. You can create your own or use the [existing](./src/jobs) ones.  See [jobs](#jobs) for more infomation.
-
-### Widgets
-
-More info coming soon.
-
-### Jobs
-
-More info coming soon.
-
-### Raspberry Pi
-
-This framework was created to enable many dashboards to be powered by one machine. Once metricio is up and running on a machine you can connect it to your local network and use it as a server. Just use the local IP address of the server machine and browse to that with as many clients as you need. Preferebly with a modern browser.
-
-![Networking](./src/assets/clients.png)
 
 ### Test
 
