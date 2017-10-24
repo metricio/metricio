@@ -21,7 +21,7 @@ test.serial('logs to console', async t => {
   t.true(mockedConsole.calledOnce, 'logger was not called once');
 });
 
-test.serial('logs to console', async t => {
+test.serial('logs to console with args', async t => {
   const level = 'defcon5';
   const msg = 'there is no spoon';
   const data = { spoon: false };
