@@ -33,5 +33,11 @@ export const perform = async () => {
         value: getRandomInt(0, 10) / 100 + 1.3,
       },
     },
+    {
+      target: 'DemoProgress',
+      data: {
+        progress: getRandomInt(1, 100),
+      },
+    },
   ];
 };

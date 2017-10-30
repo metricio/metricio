@@ -8,7 +8,8 @@
     "arrow-parens": 0,
     "comma-dangle": [2, "always-multiline"],
     "import/no-extraneous-dependencies": ["error", { "peerDependencies": true }],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "class-methods-use-this": 0
   },
   "parserOptions": {
     "ecmaVersion": 2017,

@@ -15,8 +15,8 @@ export default class PingWidget extends BaseWidget {
     const parsedTime = this.state.time ? parseTime(this.state.time) : { unit: '---', metric: '' };
     const classList = classNames(
       ...this.classList,
-      'widget__status',
-      `widget__status--${parseStatusCode(this.state.status)}`,
+      'widget__ping',
+      `widget__ping--${parseStatusCode(this.state.status)}`,
     );
 
     return (

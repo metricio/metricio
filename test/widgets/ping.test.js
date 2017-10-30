@@ -56,10 +56,10 @@ test('sets class up and down status', t => {
   const wrapper = shallow(<PingWidget socket={mockServer} name="Test" title="Ping" />);
 
   wrapper.setState({ time: 100, status: 200, updatedAt: undefined });
-  t.is(wrapper.find('.widget__status--up').length, 1);
-  t.is(wrapper.find('.widget__status--down').length, 0);
+  t.is(wrapper.find('.widget__ping--up').length, 1);
+  t.is(wrapper.find('.widget__ping--down').length, 0);
 
   wrapper.setState({ status: 500 });
-  t.is(wrapper.find('.widget__status--up').length, 0);
-  t.is(wrapper.find('.widget__status--down').length, 1);
+  t.is(wrapper.find('.widget__ping--up').length, 0);
+  t.is(wrapper.find('.widget__ping--down').length, 1);
 });

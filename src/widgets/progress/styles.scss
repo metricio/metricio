@@ -1,0 +1,18 @@
+$progressChartSize: 160px;
+
+.widget__progress {
+  background-color: #9c4274;
+
+  .widget__value {
+    padding-top: 1.7rem;
+    font-size: 3rem;
+  }
+
+  .progress {
+    position: absolute;
+    top: 60px;
+    width: $progressChartSize;
+    height: $progressChartSize;
+    left: calc(50% - #{$progressChartSize / 2});
+  }
+}

@@ -11,7 +11,7 @@ export default class BaseWidget extends React.Component {
     if (this.props.size) this.classList.push(`widget--${this.props.size}`);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.socket.on(`widget:update:${this.props.name}`, data => {
       logger('info', `updating widget: ${this.props.name}`, data);
       this.setState(data);
