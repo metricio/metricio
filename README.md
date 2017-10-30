@@ -7,7 +7,7 @@ systems and APIs.
 
 Simple to get started and quick to create build screens for all your teams.
 
-Metricio has a similar design and achitecture to [Dashing](http://dashing.io/), which was my "goto" framework for dashboards for years. Unfortunately, Dashing is [no longer maintained](https://github.com/Shopify/dashing/issues/711). But if you still prefer to write CoffeeScript and Ruby then that framework is still awesome!
+Metricio has a similar design and architecture to [Dashing](http://dashing.io/), which used to be my "goto" framework for dashboards. Unfortunately, Dashing is [no longer maintained](https://github.com/Shopify/dashing/issues/711). However, if you have a preference to writing CoffeeScript and Ruby then that framework is still awesome!
 
 Metricio allows you to:
 
@@ -19,7 +19,7 @@ Metricio allows you to:
 - Event-based communication with [socket.io](https://socket.io/)
 - Number formatting with [Numeral](http://numeraljs.com/)
 
-The UI aims to use little resource as possible. Enabling your dashboards to run without crashing for prolonged lengths of time on even the most neglected Raspberry Pi.
+The UI aims to use a little resource as possible. Enabling your dashboards to run without crashing for prolonged lengths of time on even the most neglected Raspberry Pi.
 
 ####  See the [Docs](https://metricio.co) for more information
 
