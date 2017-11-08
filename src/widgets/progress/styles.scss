@@ -10,7 +10,7 @@ $progressChartSize: 160px;
 
   .progress {
     position: absolute;
-    top: 60px;
+    top: 58px;
     width: $progressChartSize;
     height: $progressChartSize;
     left: calc(50% - #{$progressChartSize / 2});
