@@ -37,7 +37,7 @@ const webConfig = {
     new webpack.optimize.CommonsChunkPlugin({ name: 'commons', filename: 'common.bundle.js' }),
     new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
     new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(en)$/),
-    new webpack.optimize.UglifyJsPlugin(),
+    // new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
   ],
   resolve: {
