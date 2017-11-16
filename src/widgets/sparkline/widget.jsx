@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import classNames from 'classnames';
 import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
@@ -40,3 +41,9 @@ export default class SparklineWidget extends BaseWidget {
     );
   }
 }
+
+SparklineWidget.propTypes = {
+  format: PropTypes.string,
+  metric: PropTypes.string,
+  title: PropTypes.string.isRequired,
+};

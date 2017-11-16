@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { VictoryPie, VictoryAnimation, VictoryLabel } from 'victory';
 
@@ -57,3 +58,7 @@ export default class ProgressWidget extends BaseWidget {
     );
   }
 }
+
+ProgressWidget.propTypes = {
+  title: PropTypes.string.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import BaseWidget from '../base';
@@ -26,3 +27,7 @@ export default class BuildStatus extends BaseWidget {
     );
   }
 }
+
+BuildStatus.propTypes = {
+  title: PropTypes.string.isRequired,
+};
