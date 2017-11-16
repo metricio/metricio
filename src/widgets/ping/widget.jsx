@@ -9,7 +9,11 @@ import './styles.scss';
 export default class PingWidget extends BaseWidget {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      time: undefined,
+      updatedAt: undefined,
+      status: undefined,
+    };
   }
 
   render() {

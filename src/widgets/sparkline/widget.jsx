@@ -10,7 +10,10 @@ import './styles.scss';
 export default class SparklineWidget extends BaseWidget {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      value: undefined,
+      updatedAt: undefined,
+    };
   }
 
   render() {
