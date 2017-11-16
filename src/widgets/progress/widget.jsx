@@ -9,7 +9,10 @@ import './styles.scss';
 export default class ProgressWidget extends BaseWidget {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      progress: undefined,
+      updatedAt: undefined,
+    };
   }
 
   parseProgress(percent) {

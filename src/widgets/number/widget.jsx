@@ -9,7 +9,10 @@ import './styles.scss';
 export default class NumberWidget extends BaseWidget {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      value: undefined,
+      updatedAt: undefined,
+    };
   }
 
   render() {

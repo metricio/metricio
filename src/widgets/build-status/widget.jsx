@@ -8,7 +8,10 @@ import './styles.scss';
 export default class BuildStatus extends BaseWidget {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      outcome: undefined,
+      updatedAt: undefined,
+    };
   }
 
   render() {
