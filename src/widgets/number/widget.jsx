@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import numeral from 'numeral';
 
@@ -30,4 +31,8 @@ export default class NumberWidget extends BaseWidget {
   }
 }
 
-NumberWidget.propTypes = {};
+NumberWidget.propTypes = {
+  format: PropTypes.string,
+  metric: PropTypes.string,
+  title: PropTypes.string.isRequired,
+};
