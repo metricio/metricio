@@ -5,7 +5,7 @@ import session from 'express-session';
 import connectRedis from 'connect-redis';
 import socketIo from 'socket.io';
 
-import webpackMiddleWare from './dev-webpack';
+import webpackMiddleWare from './webpack.middleware';
 import appMeta from './package.json';
 import config from './config';
 import logger from './lib/logger';
