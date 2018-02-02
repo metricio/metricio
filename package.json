@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
+    "babel-core": "^6.26.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-resolver": "^1.1.0",
     "babel-polyfill": "^6.23.0",
