@@ -70,7 +70,7 @@
     "eslint-plugin-react": "^7.4.0",
     "ignore-styles": "^5.0.1",
     "jsdom": "^11.3.0",
-    "mock-socket": "^7.0.0",
+    "mock-socket": "^7.1.0",
     "nyc": "^11.2.1",
     "proxyquire": "^1.8.0",
     "react-addons-test-utils": "^15.6.2",
