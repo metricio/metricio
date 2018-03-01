@@ -44,7 +44,7 @@
     "node-schedule": "^1.2.5",
     "numeral": "^2.0.6",
     "prop-types": "^15.5.10",
-    "qs": "^6.5.0",
+    "qs": "^6.5.1",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-sparklines": "^1.7.0",
