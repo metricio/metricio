@@ -36,7 +36,7 @@
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.5",
-    "googleapis": "^20.1.0",
+    "googleapis": "^26.0.1",
     "ioredis": "^3.1.2",
     "moment": "^2.19.1",
     "node-resque": "^5.0.2",
