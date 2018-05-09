@@ -20,7 +20,6 @@ const worker = ResqueWorker(QUEUES, JOBS);
 
 test('can connect, start and end', async t => {
   await t.notThrows(worker.connect());
-  await t.notThrows(worker.workerCleanup());
   await t.notThrows(worker.start());
   await t.notThrows(worker.end());
 });
@@ -30,7 +29,7 @@ test('sets jobs', async t => {
   t.deepEqual(JOBS, expected, 'worker jobs was not equal to mocked jobs');
 });
 
-test('set queues', async t => {
+test('sets queues', async t => {
   const expected = await worker.queues;
   t.deepEqual(QUEUES, expected, 'worker queues was not equal to mocked jobs');
 });

@@ -58,13 +58,13 @@ app.get('/:dashboard', (req, res) => {
   });
 });
 
+if (process.env.NODE_ENV === 'production') {
+  app.use('/dist', express.static('dist'));
+} else {
+  app.use(webpackMiddleWare());
+}
+
 server.listen(app.get('port'), () => {
   logger('info', `running on port: ${app.get('port')}`);
   startJobs(io);
 });
-
-if (process.env.NODE_ENV === 'production') {
-  app.use('/assets', express.static('dist'));
-} else {
-  app.use(webpackMiddleWare());
-}

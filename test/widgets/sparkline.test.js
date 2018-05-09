@@ -1,7 +1,7 @@
 import test from 'ava';
 import React from 'react';
 import { Server as SocketServer } from 'mock-socket';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import SparklineWidget from '../../src/widgets/sparkline/widget';
 

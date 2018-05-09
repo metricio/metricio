@@ -5,9 +5,8 @@ import webpackConfig from './webpack.config.babel';
 
 const compiler = webpack(webpackConfig);
 
-export default () =>
-  webpackDevMiddleware(compiler, {
-    publicPath: '/assets/',
-    noInfo: true,
-    stats: { colors: true },
-  });
+export default () => webpackDevMiddleware(compiler, {
+  publicPath: '/dist/',
+  noInfo: true,
+  stats: 'errors-only',
+});

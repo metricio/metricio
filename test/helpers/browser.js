@@ -1,4 +1,5 @@
 const { JSDOM } = require('jsdom');
+const { raf } = require('./');
 
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 const { window } = jsdom;
@@ -15,4 +16,6 @@ global.document = window.document;
 global.navigator = {
   userAgent: 'node.js',
 };
+global.requestAnimationFrame = raf;
+
 copyProps(window, global);

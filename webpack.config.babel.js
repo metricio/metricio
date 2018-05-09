@@ -13,9 +13,11 @@ function getNamesAndPaths(folder) {
 }
 
 const webConfig = {
+  mode: process.env.NODE_ENV || 'development',
   entry: getNamesAndPaths(paths.dashboards),
   target: 'web',
   output: { path: paths.dist, filename: '[name].dashboard.bundle.js' },
+  stats: 'errors-only',
   module: {
     rules: [
       {
@@ -34,11 +36,8 @@ const webConfig = {
     ],
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({ name: 'commons', filename: 'common.bundle.js' }),
     new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
     new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(en)$/),
-    // new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],

@@ -1,6 +1,6 @@
 import path from 'path';
 
-const rootPath = process.env.PWD;
+const rootPath = process.platform === 'win32' ? process.cwd() : process.env.PWD;
 
 const paths = {
   dashboards: path.join(rootPath, 'src/dashboards'),

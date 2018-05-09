@@ -15,7 +15,7 @@ test('resque config has correct keys set', async t => {
 });
 
 test('redis client is available ', async t => {
-  const redisOptions = storage.client.options;
+  const redisOptions = storage.redis.options;
 
   t.is(redisOptions.keyPrefix, `${appMeta.name}:`, 'redis keyPrefix did not match');
 });
