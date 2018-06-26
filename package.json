@@ -7,7 +7,9 @@
     "start": "babel-node app.js",
     "production": "cross-env NODE_ENV=production webpack -p && cross-env NODE_ENV=production babel-node app.js",
     "test": "ava test -v",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": {
     "name": "Danny Croft",
@@ -55,7 +57,8 @@
     "socket.io-client": "^2.1.0",
     "style-loader": "^0.21.0",
     "victory": "^0.24.0",
-    "webpack": "^4.8.1"
+    "webpack": "^4.8.1",
+    "snyk": "^1.85.0"
   },
   "devDependencies": {
     "ava": "^0.25.0",
@@ -91,5 +94,6 @@
       "./test/helpers/enzyme.js"
     ],
     "babel": "inherit"
-  }
+  },
+  "snyk": true
 }
