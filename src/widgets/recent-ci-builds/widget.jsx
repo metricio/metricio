@@ -35,7 +35,6 @@ export default class RecentCiBuilds extends BaseWidget {
     const { builds } = this.state;
     // const latestValue = this.state.value ? this.state.value.slice(-1).pop() : 0;
     // const classList = classNames(...this.classList, 'widget__sparkline');
-    console.log(builds);
     return (
       <div className="ci-wrapper">
         {builds && builds.map(item => <Rectangle key={item.id} {...item} />)}
