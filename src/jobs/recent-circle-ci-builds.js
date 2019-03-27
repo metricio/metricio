@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import request from 'request-promise-native';
 
-function getRecentBuilds(repo, branch, limit = 10) {
+function getRecentBuilds(limit = 10) {
   const endpoint = 'https://circleci.com/api/v1.1/recent-builds';
   const options = {
     uri: endpoint,
