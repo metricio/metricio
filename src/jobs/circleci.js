@@ -7,7 +7,7 @@ function getBranch(repo, branch, limit = 10) {
   const options = {
     uri: `${endpoint}/${githubUser}/${repo}/tree/${branch}`,
     qs: {
-      'circle-token': '',
+      'circle-token': process.env.CIRCLE_CI_TOKEN,
       offset: 0,
       limit,
     },
@@ -24,10 +24,9 @@ export const interval = '*/2 * * * *';
 
 // Define our jobs function
 export const perform = async () => {
-
   const epagesUiMaster = await getBranch('epages-ui', 'master');
 
-  const merchantUiMaster = await getBranch('ng-merchant-ui', 'master')
+  const merchantUiMaster = await getBranch('ng-merchant-ui', 'master');
 
   return [
     {
@@ -38,11 +37,11 @@ export const perform = async () => {
       },
     },
     {
-        target: 'ng-merchant-ui-master',
-        data: {
-          outcome: merchantUiMaster[0].outcome === null ? 'pending' : merchantUiMaster[0].outcome,
-          commitMessage: merchantUiMaster[0].subject === null ? 'unknown commit message' : merchantUiMaster[0].subject,
-        },
+      target: 'ng-merchant-ui-master',
+      data: {
+        outcome: merchantUiMaster[0].outcome === null ? 'pending' : merchantUiMaster[0].outcome,
+        commitMessage: merchantUiMaster[0].subject === null ? 'unknown commit message' : merchantUiMaster[0].subject,
       },
+    },
   ];
 };
