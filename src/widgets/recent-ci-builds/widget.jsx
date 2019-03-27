@@ -4,6 +4,7 @@ import './styles.scss';
 import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
 
 import BaseWidget from '../base';
+import CircleCiBuild from '../circle-ci-build/widget';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
@@ -34,7 +35,8 @@ export default class RecentCiBuilds extends BaseWidget {
     // const classList = classNames(...this.classList, 'widget__sparkline');
     return (
       <div className="ci-wrapper">
-        {builds && builds.map(item => <Rectangle key={item.id} {...item} />)}
+        {builds &&
+          builds.map(item => <CircleCiBuild key={item.id} {...item} />)}
       </div>
     );
   }

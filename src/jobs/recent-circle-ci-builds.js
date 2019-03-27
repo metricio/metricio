@@ -32,13 +32,13 @@ export const perform = async () => {
   // Resolve promise for master
   //   const master = await getBranch(repoName, 'master');
   //   const data = JSON.stringify(master[0]);
-  console.log('PERFORMCI WIDGET UPDATE');
+
   return [
     {
       target: 'RecentCiBuilds',
       data: {
         builds: [
-          { id: 1, name: 'build 1' },
+          { id: 1, name: 'build 1', status: 1 },
           { id: 2, name: 'asfsaf' },
           { id: 3, name: 'RANDOM' },
         ],
