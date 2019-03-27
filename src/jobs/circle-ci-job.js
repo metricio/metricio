@@ -1,7 +1,7 @@
 import fs from 'fs';
 import request from 'request-promise-native';
 
-const circleCiToken = 'c05e7c7b5ce0f1bd600345e15de6cb8ad7564ee2';
+const circleCiToken = process.env.CIRCLE_CI_TOKEN;
 const circleCiUser = 'ePages-de';
 const repoName = 'epages-ui';
 
