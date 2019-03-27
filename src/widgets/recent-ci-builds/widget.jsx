@@ -10,10 +10,7 @@ import classNames from 'classnames';
 import numeral from 'numeral';
 
 const Rectangle = ({ id, name }) => {
-  const classList = classNames(
-    'widget__circleCIBuildsOverview',
-    `widget--${'success'}`
-  );
+  const classList = classNames('widget__buildStatus', `widget--${'success'}`);
 
   return (
     <div className={classList}>
