@@ -10,27 +10,20 @@ export default class CircleCIBuild extends React.Component {
   render() {
     const classList = classNames(
       'widget__circleCIBuild',
-      `widget--${this.props.name}`
+      `widget--${this.props.buildStatus}`
     );
 
     return (
       <div className={classList}>
-        <h1 className="widget__title">{this.props.title}</h1>
-        <h2 className="widget__value">
-          {this.props.name ? this.props.name : '---'}
-        </h2>
-        <p>
-          Is it building?
-          {this.props.status ? 'Of course it is!' : 'Nope, go fix it!'}
-        </p>
-        {this.props.updatedAt && (
-          <p className="widget__updatedAt">{this.props.updatedAt}</p>
-        )}
+        <div className="tile-title"><img src={this.props.authorAvatar} height="64"/> {this.props.author}</div>
+        <div className="tile-body-project">{this.props.projectName}</div>
+        <div className="tile-body-comment">{this.props.commitMessage}</div>
+        <div className="tile-footer-status">{this.props.buildStatus}</div>
+        {this.props.updatedAt && <p className="widget__updatedAt">{this.props.updatedAt}</p>}
       </div>
     );
   }
 }
 
 CircleCIBuild.propTypes = {
-  title: PropTypes.string.isRequired,
 };

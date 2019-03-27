@@ -10,17 +10,6 @@ import React from 'react';
 import classNames from 'classnames';
 import numeral from 'numeral';
 
-const Rectangle = ({ id, name }) => {
-  const classList = classNames('widget__buildStatus', `widget--${'success'}`);
-
-  return (
-    <div className={classList}>
-      <h1>{id}</h1>
-      <p>{name}</p>
-    </div>
-  );
-};
-
 export default class RecentCiBuilds extends BaseWidget {
   constructor(props) {
     super(props);
@@ -45,5 +34,5 @@ export default class RecentCiBuilds extends BaseWidget {
 RecentCiBuilds.propTypes = {
   format: PropTypes.string,
   metric: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };

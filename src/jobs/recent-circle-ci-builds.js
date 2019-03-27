@@ -38,9 +38,9 @@ export const perform = async () => {
       target: 'RecentCiBuilds',
       data: {
         builds: [
-          { id: 1, name: 'build 1', status: 1 },
-          { id: 2, name: 'asfsaf' },
-          { id: 3, name: 'RANDOM' },
+          { id: 1, name: 'build 1', status: 1, buildStatus: 'success', commitMessage: 'Chore: Add mock clear call of browserhistory', projectName: 'ng-merchant-ui', authorAvatar: 'https://www.gravatar.com/avatar/1310d563e8a7ce49e2046e81b22b7552%3E?s=512&default=retro' },
+          { id: 2, name: 'asfsaf', buildStatus: 'success' },
+          { id: 3, name: 'RANDOM', buildStatus: 'fail' },
         ],
       },
     },
