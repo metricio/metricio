@@ -26,7 +26,7 @@ function getGravatar(email) {
   return `https://www.gravatar.com/avatar/${hash}?s=512&default=retro`;
 }
 
-export const interval = '*/10 * * * * *';
+export const interval = '*/2 * * * *';
 
 export const perform = async () => {
   const recentBuilds = await getRecentBuilds(30);
