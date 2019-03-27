@@ -12,6 +12,8 @@ import logger from './lib/logger';
 import * as storage from './lib/storage';
 import startJobs from './lib/jobs';
 
+if (!process.env.CIRCLE_CI_TOKEN) logger('warn', 'CIRCLE_CI_TOKEN environment variable is missing!');
+
 const env = process.env.NODE_ENV || 'development';
 const RedisStore = connectRedis(session);
 const app = express();
