@@ -19,3 +19,18 @@
     font-size: 4.8rem;
   }
 }
+
+.widget__circleCIBuild_tile {
+  position: relative;
+}
+
+.tile-title {
+  border-bottom: 1px solid gray;
+}
+
+.tile-footer-status {
+  border-top: 1px solid gray;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

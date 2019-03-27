@@ -10,6 +10,7 @@ export default class CircleCIBuild extends React.Component {
   render() {
     const classList = classNames(
       'widget__circleCIBuild',
+      'widget__circleCIBuild_tile',
       `widget--${this.props.buildStatus}`
     );
 
