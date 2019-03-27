@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import '../styles/default.scss';
 
 import Dashboard from '../widgets/dashboard';
-import CircleCIBuildsOverview from '../widgets/circle-ci-builds-overview/widget'
+import CircleCIBuildsOverview from '../widgets/circle-ci-builds-overview/widget';
 
 ReactDOM.render(
   <Dashboard>
