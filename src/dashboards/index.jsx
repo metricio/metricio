@@ -1,6 +1,5 @@
 import '../styles/default.scss';
 
-import CircleCIBuildsOverview from '../widgets/circle-ci-builds-overview/widget';
 import Dashboard from '../widgets/dashboard';
 // eslint-disable-next-line import/first
 import React from 'react';
