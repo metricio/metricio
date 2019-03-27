@@ -4,10 +4,14 @@
   "description": "dashboard for displaying metrics easily",
   "main": "app.js",
   "scripts": {
-    "start": "babel-node app.js",
-    "production": "cross-env NODE_ENV=production webpack -p && cross-env NODE_ENV=production babel-node app.js",
-    "test": "ava test -v",
-    "lint": "eslint ."
+    "pretest": "docker-compose up -d",
+    "prestart": "docker-compose up -d",
+    "preproduction": "docker-compose up -d",
+    "start": "REDIS_SERVER_PORT=3001 babel-node app.js",
+    "production": "cross-env NODE_ENV=production webpack -p && cross-env NODE_ENV=production REDIS_SERVER_PORT=3001 babel-node app.js",
+    "test": "REDIS_SERVER_PORT=3001 ava test -v",
+    "lint": "eslint .",
+    "docker-build": "docker build -t epages/circle-ci-wall:latest ."
   },
   "author": {
     "name": "Danny Croft",

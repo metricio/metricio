@@ -1,0 +1,10 @@
+metricio:
+  container_name: circle-ci-wall-metricio
+  image: epages/circle-ci-wall:latest
+  links:
+    - "redis:redis"
+  ports:
+    - "3000:3000"
+  restart: "always"
+  environment:
+    REDIS_SERVER_HOST: "redis"
