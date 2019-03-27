@@ -1,23 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 import '../styles/default.scss';
 
+import CircleCIBuildsOverview from '../widgets/circle-ci-builds-overview/widget';
 import Dashboard from '../widgets/dashboard';
-import CircleCIBuildsOverview from '../widgets/circle-ci-builds-overview/widget'
+// eslint-disable-next-line import/first
+import React from 'react';
+// eslint-disable-next-line import/first
+import ReactDOM from 'react-dom';
+import RecentCiBuilds from '../widgets/recent-ci-builds/widget';
 
 ReactDOM.render(
   <Dashboard>
-    <CircleCIBuildsOverview
-      name="epages-ui-master"
-      title="epages-ui master"
-      size="medium"
-    />
-    <CircleCIBuildsOverview
-      name="ng-merchant-ui-master"
-      title="ng-merchant-ui master"
-      size="medium"
-    />
+    <RecentCiBuilds size="medium" name="RecentCiBuilds" />
   </Dashboard>,
-  document.getElementById('content'),
+  document.getElementById('content')
 );

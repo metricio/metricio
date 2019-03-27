@@ -1,6 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-
+import React from 'react';
 import logger from '../../lib/logger';
 
 export default class BaseWidget extends React.Component {
