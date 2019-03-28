@@ -1,7 +1,7 @@
 {
-  "name": "Circle CI Wallboard (forked from metricio/metricio)",
+  "name": "circle-ci-wall",
   "version": "1.2.0",
-  "description": "dashboard for displaying metrics easily",
+  "description": "forked from metricio/metricio",
   "main": "app.js",
   "scripts": {
     "pretest": "docker-compose up -d",
