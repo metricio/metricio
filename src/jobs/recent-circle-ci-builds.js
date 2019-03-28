@@ -57,7 +57,6 @@ export const perform = async () => {
         authorAvatar: getGravatar(build.author_email),
         author: build.author_name,
         circleCiJob: build.build_num,
-        projectName: build.reponame,
         commitMessage: build.subject,
         buildStatus: build.status,
         branch: build.branch,

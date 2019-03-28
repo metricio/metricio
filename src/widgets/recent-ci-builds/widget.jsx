@@ -39,13 +39,13 @@ export default class RecentCiBuilds extends BaseWidget {
     };
   }
 
-  handleCheck = (e, projectName) => {
+  handleCheck = (e, reponame) => {
     const { checked } = e.target;
     const { filteredProjects } = this.state;
 
     this.setState({
       filteredProjects: Object.assign(filteredProjects, {
-        [projectName]: {
+        [reponame]: {
           checked,
         },
       }),
@@ -55,8 +55,8 @@ export default class RecentCiBuilds extends BaseWidget {
   filterByProject = item => {
     const { filteredProjects } = this.state;
 
-    if (filteredProjects[item.projectName]) {
-      return filteredProjects[item.projectName]['checked'] && item;
+    if (filteredProjects[item.reponame]) {
+      return filteredProjects[item.reponame]['checked'] && item;
     }
     return item;
   };
