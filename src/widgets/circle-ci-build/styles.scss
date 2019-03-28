@@ -42,6 +42,17 @@
   border-radius: 50%;
 }
 
+.tile-title-name {
+  display: inline;
+}
+
+.tile-title-control {
+  display: inline;
+  float: right;
+  height: 64px;
+  margin-top: 16px;
+}
+
 .tile-footer-status {
   border-top: 1px solid gray;
   bottom: 0;

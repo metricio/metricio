@@ -28,10 +28,13 @@ export default function CircleCIBuild({
           src={authorAvatar}
           alt=""
           height="64"
-        />
-        {' '}
-        {author}
+        />{' '}
+        <p className="tile-title-name">{author}</p>
+        <div className="tile-title-control">
+          <button>Rebuild</button>
+        </div>
       </div>
+
       <div className="tile-body">
         <div className="tile-body-project">{projectName}</div>
         <div className="tile-body-comment">{commitMessage}</div>
