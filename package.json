@@ -1,5 +1,5 @@
 {
-  "name": "metricio",
+  "name": "Circle CI Wallboard (forked from metricio/metricio)",
   "version": "1.2.0",
   "description": "dashboard for displaying metrics easily",
   "main": "app.js",
