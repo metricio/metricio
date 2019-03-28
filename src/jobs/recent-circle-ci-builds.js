@@ -49,20 +49,31 @@ export const perform = async () => {
   const recentBuilds = await getRecentBuilds(30);
   const projects = await getProjects();
 
+  const isSamePullRequestAs = a => b => a.branch === b.branch && a.reponame === b.reponame;
+
+  const builds = recentBuilds.reduce((allBuilds, build) => {
+    if (!allBuilds.some(isSamePullRequestAs(build))) {
+      allBuilds.push({
+        authorAvatar: getGravatar(build.author_email),
+        author: build.author_name,
+        circleCiJob: build.build_num,
+        projectName: build.reponame,
+        commitMessage: build.subject,
+        buildStatus: build.status,
+        branch: build.branch,
+        reponame: build.reponame,
+        githubPR: build.branch.split('pull/')[1] ? parseInt(build.branch.split('pull/')[1], 10) : null,
+      });
+    }
+    return allBuilds;
+  }, []);
+
   return [
     {
       target: 'RecentCiBuilds',
       data: {
-        projects: projects,
-        builds: recentBuilds.map(build => ({
-          authorAvatar: getGravatar(build.author_email),
-          author: build.author_name,
-          circleCiJob: build.build_num,
-          projectName: build.reponame,
-          commitMessage: build.subject,
-          buildStatus: build.status,
-          githubPR: build.branch.split("pull/")[1] ? parseInt(build.branch.split("pull/")[1]) : null,
-        })),
+        projects,
+        builds,
       },
     },
   ];
