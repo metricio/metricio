@@ -12,7 +12,6 @@ export default function CircleCIBuild({
   commitMessage,
   githubPR,
   circleCiJob,
-  updatedAt,
   buildUrl,
 }) {
   const classList = classNames(
@@ -118,6 +117,5 @@ CircleCIBuild.propTypes = {
   buildStatus: PropTypes.string.isRequired,
   reponame: PropTypes.string.isRequired,
   commitMessage: PropTypes.string.isRequired,
-  updatedAt: PropTypes.string.isRequired,
   buildUrl: PropTypes.string.isRequired,
 };
