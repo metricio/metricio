@@ -3,7 +3,9 @@ import socketIOClient from 'socket.io-client';
 
 function renderWidgets(props) {
   const socket = socketIOClient(`http://${window.location.host}`);
-  return React.Children.map(props.children, child => React.cloneElement(child, { socket }));
+  return React.Children.map(props.children, child =>
+    React.cloneElement(child, { socket })
+  );
 }
 
 function Dashboard(props) {

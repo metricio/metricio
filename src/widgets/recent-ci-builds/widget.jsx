@@ -11,11 +11,13 @@ const ProjectCheckboxes = ({
   handleCheck,
 }) => (
   <div className="project-checkboxes">
+    <h2>Project list</h2>
     {projects.map(p => (
       <div key={p.reponame}>
         <input
           type="checkbox"
           name={p.reponame}
+          id={p.reponame}
           onChange={e => handleCheck(e, p.reponame)}
           checked={
             filteredProjects[p.reponame]

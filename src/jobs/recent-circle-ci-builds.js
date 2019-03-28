@@ -49,7 +49,8 @@ export const perform = async () => {
   const recentBuilds = await getRecentBuilds(30);
   const projects = await getProjects();
 
-  const isSamePullRequestAs = a => b => a.branch === b.branch && a.reponame === b.reponame;
+  const isSamePullRequestAs = a => b =>
+    a.branch === b.branch && a.reponame === b.reponame;
 
   const builds = recentBuilds.reduce((allBuilds, build) => {
     if (!allBuilds.some(isSamePullRequestAs(build))) {
@@ -61,7 +62,10 @@ export const perform = async () => {
         buildStatus: build.status,
         branch: build.branch,
         reponame: build.reponame,
-        githubPR: build.branch.split('pull/')[1] ? parseInt(build.branch.split('pull/')[1], 10) : null,
+        githubPR: build.branch.split('pull/')[1]
+          ? parseInt(build.branch.split('pull/')[1], 10)
+          : null,
+        buildUrl: build.build_url,
       });
     }
     return allBuilds;
