@@ -13,7 +13,7 @@ COPY --chown=node . .
 
 # ENV NODE_ENV=production
 
-RUN npm ci
+RUN npm i
 RUN node_modules/.bin/webpack -p
 # RUN npm i --production
 
