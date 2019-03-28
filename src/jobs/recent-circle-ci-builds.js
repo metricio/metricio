@@ -59,6 +59,7 @@ export const perform = async () => {
         author: build.author_name,
         circleCiJob: build.build_num,
         commitMessage: build.subject,
+        commitHash: build.vcs_revision,
         buildStatus: build.status,
         branch: build.branch,
         reponame: build.reponame,

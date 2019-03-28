@@ -13,6 +13,7 @@ export default function CircleCIBuild({
   githubPR,
   circleCiJob,
   buildUrl,
+  commitHash,
 }) {
   const classList = classNames(
     'widget__circleCIBuild',
@@ -61,7 +62,7 @@ export default function CircleCIBuild({
 
       <div className="tile-body">
         <div className="tile-body-project">{reponame}</div>
-        <div className="tile-body-comment">{commitMessage}</div>
+        <div className="tile-body-comment"><a href={`https://github.com/ePages-de/${reponame}/${githubPR ? `pull/${githubPR}/commits` : 'commit'}/${commitHash}`}>{commitMessage}</a></div>
       </div>
 
       <div className="tile-footer">
