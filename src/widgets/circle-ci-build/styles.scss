@@ -53,16 +53,22 @@
   margin-top: 16px;
 }
 
-.tile-footer-status {
+.tile-footer {
+  position: relative;
+  padding: 5px;
   border-top: 1px solid gray;
   bottom: 0;
   width: 100%;
 }
 
-.tile-body {
-  padding: 5px;
+.tile-footer-status {
+  float: left;
 }
 
-.tile-footer {
+.tile-footer-icons {
+  float: right;
+}
+
+.tile-body {
   padding: 5px;
 }
