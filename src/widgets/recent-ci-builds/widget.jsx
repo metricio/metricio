@@ -1,14 +1,10 @@
 import './styles.scss';
 
-/* eslint-disable import/first */
-import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
 
-import BaseWidget from '../base';
-import CircleCiBuild from '../circle-ci-build/widget';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
-import numeral from 'numeral';
+import BaseWidget from '../base';
+import CircleCiBuild from '../circle-ci-build/widget';
 
 export default class RecentCiBuilds extends BaseWidget {
   constructor(props) {

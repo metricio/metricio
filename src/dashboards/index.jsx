@@ -1,11 +1,8 @@
 import '../styles/default.scss';
 
-import CircleCIBuild from '../widgets/circle-ci-build/widget';
-import Dashboard from '../widgets/dashboard';
-// eslint-disable-next-line import/first
 import React from 'react';
-// eslint-disable-next-line import/first
 import ReactDOM from 'react-dom';
+import Dashboard from '../widgets/dashboard';
 import RecentCiBuilds from '../widgets/recent-ci-builds/widget';
 
 ReactDOM.render(
