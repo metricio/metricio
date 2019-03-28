@@ -51,6 +51,7 @@ export default function CircleCIBuild({
             <button
               disabled={['running', 'scheduled'].includes(buildStatus)}
               onClick={rebuild}
+              className="tile-title-control-rebuild"
             >
               Rebuild
             </button>
