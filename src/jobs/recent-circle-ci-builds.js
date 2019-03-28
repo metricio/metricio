@@ -61,7 +61,7 @@ export const perform = async () => {
           projectName: build.reponame,
           commitMessage: build.subject,
           buildStatus: build.status,
-          githubPR: build.branch,
+          githubPR: build.branch.split("pull/")[1] ? parseInt(build.branch.split("pull/")[1]) : null,
         })),
       },
     },
