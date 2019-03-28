@@ -23,9 +23,9 @@
 .ci-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
-  grid-auto-rows: minmax(15rem, auto);
+  // grid-auto-rows: minmax(15rem, auto);
   grid-gap: 1rem;
-  margin: 0 auto;
+  // margin: 0 auto;
   max-width: 100vw;
   padding: 1rem;
 }

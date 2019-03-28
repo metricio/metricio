@@ -14,17 +14,32 @@ export default class CircleCIBuild extends React.Component {
       `widget--${this.props.buildStatus}`
     );
 
+    const titleClassList = classNames(
+      'tile-title',
+      `tile-title--${this.props.buildStatus}`
+    );
+
     return (
       <div className={classList}>
-        <div className="tile-title">
-          <img src={this.props.authorAvatar} height="64" /> {this.props.author}
+        <div className={titleClassList}>
+          <img
+            className="tile-title-avatar"
+            src={this.props.authorAvatar}
+            height="64"
+          />{' '}
+          {this.props.author}
         </div>
-        <div className="tile-body-project">{this.props.projectName}</div>
-        <div className="tile-body-comment">{this.props.commitMessage}</div>
-        <div className="tile-footer-status">{this.props.buildStatus}</div>
-        {this.props.updatedAt && (
-          <p className="widget__updatedAt">{this.props.updatedAt}</p>
-        )}
+        <div className="tile-body">
+          <div className="tile-body-project">{this.props.projectName}</div>
+          <div className="tile-body-comment">{this.props.commitMessage}</div>
+        </div>
+
+        <div className="tile-footer">
+          <div className="tile-footer-status">{this.props.buildStatus}</div>
+          {this.props.updatedAt && (
+            <p className="widget__updatedAt">{this.props.updatedAt}</p>
+          )}
+        </div>
       </div>
     );
   }

@@ -9,8 +9,8 @@ $gutter: 0.625rem;
 body {
   padding: 0;
   margin: 0;
-  font-size: 2vw;
-  color: white;
+  // font-size: 2vw;
+  color: #333;
   font-family: 'Saira', sans-serif;
   background-color: #222;
   box-sizing: border-box;
@@ -26,15 +26,9 @@ p {
   margin: 0;
 }
 
-// .dashboard {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-//   grid-auto-rows: minmax(15rem, auto);
-//   grid-gap: 1rem;
-//   margin: 0 auto;
-//   max-width: 100vw;
-//   padding: 1rem;
-// }
+#content {
+  background-color: #eee;
+}
 
 .dashboard {
   width: 1024;

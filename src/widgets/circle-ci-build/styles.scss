@@ -3,14 +3,6 @@
     padding: 1.375rem 0 0;
     font-size: 3.75rem;
   }
-
-  &.widget--success {
-    background-color: #4cbf55;
-  }
-
-  &.widget--fail {
-    background-color: #f42a2a;
-  }
 }
 
 .widget__circleCIBuild.widget--medium {
@@ -20,17 +12,41 @@
   }
 }
 
-.widget__circleCIBuild_tile {
-  position: relative;
+.widget__circleCIBuild.widget__circleCIBuild_tile {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
 }
 
 .tile-title {
   border-bottom: 1px solid gray;
+  padding: 5px;
+  border-radius: 5px 5px 0 0px;
+}
+
+.tile-title--success {
+  background-color: #4cbf55;
+}
+
+.tile-title--fail {
+  background-color: #f42a2a;
+}
+
+.tile-title-avatar {
+  vertical-align: middle;
+  border-radius: 50%;
 }
 
 .tile-footer-status {
   border-top: 1px solid gray;
-  position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.tile-body {
+  padding: 5px;
+}
+
+.tile-footer {
+  padding: 5px;
 }
