@@ -1,12 +1,7 @@
 import crypto from 'crypto';
-import fs from 'fs';
 import request from 'request-promise-native';
-const circleCiUser = 'ePages-de';
-const repoName = 'epages-ui';
 
-// Helper method to fetch a status for a branch
-function getRecentBuilds(repo, branch, limit = 10) {
-  const githubUser = circleCiUser;
+function getRecentBuilds(limit = 10) {
   const endpoint = 'https://circleci.com/api/v1.1/recent-builds';
   const options = {
     uri: endpoint,
@@ -31,16 +26,10 @@ function getGravatar(email) {
   return `https://www.gravatar.com/avatar/${hash}?s=512&default=retro`;
 }
 
-// Define our interval e.g. https://crontab.guru
-export const interval = '*/10 * * * * *';
+export const interval = '*/2 * * * *';
 
-// Define our jobs function
 export const perform = async () => {
-  // Resolve promise for master
   const recentBuilds = await getRecentBuilds(30);
-  //   const data = JSON.stringify(master[0]);
-
-  console.log(JSON.stringify(recentBuilds));
 
   return [
     {
