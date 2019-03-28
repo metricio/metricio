@@ -15,6 +15,7 @@
 .widget__circleCIBuild.widget__circleCIBuild_tile {
   background-color: #fff;
   border-radius: 5px;
+  position: relative;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
 }
 
@@ -28,8 +29,12 @@
   background-color: #4cbf55;
 }
 
-.tile-title--fail {
-  background-color: #f42a2a;
+.tile-title--failed {
+  background-color: #af432e;
+}
+
+.tile-title--fixed {
+  background-color: #77ab13;
 }
 
 .tile-title-avatar {
