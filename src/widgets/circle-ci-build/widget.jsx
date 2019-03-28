@@ -49,6 +49,7 @@ export default class CircleCIBuild extends React.Component {
       circleCiJob,
       commitHash,
       failedStep,
+      branch,
     } = this.props;
 
     const classList = classNames(
@@ -89,7 +90,7 @@ export default class CircleCIBuild extends React.Component {
         </div>
 
         <div className="tile-body">
-          <div className="tile-body-project">{reponame}</div>
+          <div className="tile-body-project"><em>{reponame}/{branch}</em></div>
           <div className="tile-body-comment"><a href={`https://github.com/ePages-de/${reponame}/${githubPR ? `pull/${githubPR}/commits` : 'commit'}/${commitHash}`}>{commitMessage}</a></div>
         </div>
 
@@ -135,7 +136,7 @@ export default class CircleCIBuild extends React.Component {
             </a>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
