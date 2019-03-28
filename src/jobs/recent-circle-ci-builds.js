@@ -1,21 +1,37 @@
 import crypto from 'crypto';
 import request from 'request-promise-native';
 
+const requestOptions = {
+  headers: {
+    'User-Agent': 'Metricio - CircleCI',
+  },
+  json: true,
+};
+
 function getRecentBuilds(limit = 10) {
   const endpoint = 'https://circleci.com/api/v1.1/recent-builds';
   const options = {
+    ...requestOptions,
     uri: endpoint,
     qs: {
       'circle-token': process.env.CIRCLE_CI_TOKEN,
       offset: 0,
       limit,
     },
-    headers: {
-      'User-Agent': 'Metricio - CircleCI',
-    },
-    json: true,
   };
   return request(options);
+}
+
+function getBuildDetails(build) {
+  const uri = `https://circleci.com/api/v1.1/project/github/ePages-de/${build.reponame}/${build.circleCiJob}`;
+
+  return request({
+    ...requestOptions,
+    uri,
+    qs: {
+      'circle-token': process.env.CIRCLE_CI_TOKEN,
+    },
+  });
 }
 
 function getGravatar(email) {
@@ -32,14 +48,11 @@ export const interval = '*/2 * * * *';
 function getProjects() {
   const endpoint = 'https://circleci.com/api/v1.1/projects';
   const options = {
+    ...requestOptions,
     uri: endpoint,
     qs: {
       'circle-token': process.env.CIRCLE_CI_TOKEN,
     },
-    headers: {
-      'User-Agent': 'Metricio - CircleCI',
-    },
-    json: true,
   };
 
   return request(options);
@@ -72,12 +85,23 @@ export const perform = async () => {
     return allBuilds;
   }, []);
 
+  const enrichedBuilds = await Promise.all(builds.map(async build => {
+    if (build.buildStatus === 'failed') {
+      build.failedStep = (await getBuildDetails(build))
+        .steps.find(step => step.actions.find(action => action.failed))
+        .name;
+
+      console.log('\n\n\n\n\n\n', build.failedStep);
+    }
+    return build;
+  }));
+
   return [
     {
       target: 'RecentCiBuilds',
       data: {
         projects,
-        builds,
+        builds: enrichedBuilds,
       },
     },
   ];
