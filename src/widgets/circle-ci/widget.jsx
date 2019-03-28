@@ -1,11 +1,6 @@
-/* eslint-disable import/first */
-import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
-
-import BaseWidget from '../base';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
-import numeral from 'numeral';
+import BaseWidget from '../base';
 
 export default class CircleCiWidget extends BaseWidget {
   constructor(props) {
