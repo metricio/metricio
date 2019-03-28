@@ -23,7 +23,7 @@ const ProjectCheckboxes = ({
               : true
           }
         />
-        <label for="scales">{p.reponame}</label>
+        <label htmlFor={p.reponame}>{p.reponame}</label>
       </div>
     ))}
   </div>
