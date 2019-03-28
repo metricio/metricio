@@ -13,12 +13,14 @@ export default class BaseWidget extends React.Component {
     this.props.socket.on(`widget:update:${this.props.name}`, data => {
       logger('info', `updating widget: ${this.props.name}`, data);
       this.setState(data);
-      doHeightUpdate();
+      // doHeightUpdate();
     });
   }
 }
 
 function doHeightUpdate() {
+  console.log('CHANGE STATE');
+
   var tile_bodies = document.getElementsByClassName('tile-body');
   var last_height = -1;
   var last_div_el = undefined;
