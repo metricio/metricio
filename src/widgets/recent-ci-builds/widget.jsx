@@ -1,28 +1,82 @@
 import './styles.scss';
 
-
-import PropTypes from 'prop-types';
-import React from 'react';
 import BaseWidget from '../base';
 import CircleCiBuild from '../circle-ci-build/widget';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+const ProjectCheckboxes = ({
+  projects = [],
+  filteredProjects = {},
+  handleCheck,
+}) => (
+  <div className="project-checkboxes">
+    {projects.map(p => (
+      <div key={p.reponame}>
+        <input
+          type="checkbox"
+          name={p.reponame}
+          onChange={e => handleCheck(e, p.reponame)}
+          checked={
+            filteredProjects[p.reponame]
+              ? filteredProjects[p.reponame]['checked']
+              : true
+          }
+        />
+        <label for="scales">{p.reponame}</label>
+      </div>
+    ))}
+  </div>
+);
 
 export default class RecentCiBuilds extends BaseWidget {
   constructor(props) {
     super(props);
     this.state = {
-      builds: undefined,
+      builds: [],
+      projects: [],
+      filteredProjects: {},
     };
   }
 
+  handleCheck = (e, projectName) => {
+    const { checked } = e.target;
+    const { filteredProjects } = this.state;
+
+    this.setState({
+      filteredProjects: Object.assign(filteredProjects, {
+        [projectName]: {
+          checked,
+        },
+      }),
+    });
+  };
+
+  filterByProject = item => {
+    const { filteredProjects } = this.state;
+
+    if (filteredProjects[item.projectName]) {
+      return filteredProjects[item.projectName]['checked'] && item;
+    }
+    return item;
+  };
+
   render() {
-    const { builds } = this.state;
-    // const latestValue = this.state.value ? this.state.value.slice(-1).pop() : 0;
-    // const classList = classNames(...this.classList, 'widget__sparkline');
+    const { builds, projects, filteredProjects } = this.state;
+
     return (
-      <div className="ci-wrapper">
-        {builds &&
-          builds.map(item => <CircleCiBuild key={item.id} {...item} />)}
-      </div>
+      <>
+        <ProjectCheckboxes
+          {...{ projects, filteredProjects }}
+          handleCheck={this.handleCheck}
+        />
+        <div className="ci-wrapper">
+          {builds &&
+            builds
+              .filter(this.filterByProject)
+              .map(item => <CircleCiBuild key={item.id} {...item} />)}
+        </div>
+      </>
     );
   }
 }

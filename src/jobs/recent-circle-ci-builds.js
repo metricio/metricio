@@ -23,18 +23,37 @@ function getGravatar(email) {
     .createHash('md5')
     .update(email)
     .digest('hex');
+
   return `https://www.gravatar.com/avatar/${hash}?s=512&default=retro`;
 }
 
 export const interval = '*/2 * * * *';
 
+function getProjects() {
+  const endpoint = 'https://circleci.com/api/v1.1/projects';
+  const options = {
+    uri: endpoint,
+    qs: {
+      'circle-token': process.env.CIRCLE_CI_TOKEN,
+    },
+    headers: {
+      'User-Agent': 'Metricio - CircleCI',
+    },
+    json: true,
+  };
+
+  return request(options);
+}
+
 export const perform = async () => {
   const recentBuilds = await getRecentBuilds(30);
+  const projects = await getProjects();
 
   return [
     {
       target: 'RecentCiBuilds',
       data: {
+        projects: projects,
         builds: recentBuilds.map(build => ({
           authorAvatar: getGravatar(build.author_email),
           author: build.author_name,
