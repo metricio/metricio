@@ -59,7 +59,7 @@ function getProjects() {
 }
 
 export const perform = async () => {
-  const recentBuilds = await getRecentBuilds(30);
+  const recentBuilds = await getRecentBuilds(80);
   const projects = await getProjects();
 
   const isSamePullRequestAs = a => b =>
