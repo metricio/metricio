@@ -1,4 +1,4 @@
-First, [create a personal API token](https://circleci.com/account/api).
+First, create personal API tokens for [CircleCI](https://circleci.com/account/api) and [GitHub](https://github.com/settings/tokens).
 
 ## Run on your VM
 
@@ -15,6 +15,8 @@ metricio:
   environment:
     REDIS_SERVER_HOST: "redis"
     CIRCLE_CI_TOKEN: $CIRCLE_CI_TOKEN
+    GITHUB_USER: $GITHUB_USER
+    GITHUB_TOKEN: $GITHUB_TOKEN
 
 redis:
   container_name: circle-ci-wall-redis
@@ -34,6 +36,8 @@ docker-compose up -d
 1. `git clone https://github.com/depoulo/Circle-CI-Wall.git && cd Circle-CI-Wall`
 1. `npm install`
 1. `export CIRCLE_CI_TOKEN=<your-token>` (see above)
+1. `export GITHUB_USER=<your-user-name>` (see above)
+1. `export GITHUB_TOKEN=<your-token>` (see above)
 1. `npm start`
 
 ## Contributing

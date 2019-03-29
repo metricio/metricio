@@ -14,8 +14,7 @@ import socketIo from 'socket.io';
 import startJobs from './lib/jobs';
 import webpackMiddleWare from './webpack.middleware';
 
-if (!process.env.CIRCLE_CI_TOKEN)
-  logger('warn', 'CIRCLE_CI_TOKEN environment variable is missing!');
+['CIRCLE_CI_TOKEN', 'GITHUB_USER', 'GITHUB_TOKEN'].forEach(env => env || logger('warn', `${env} environment variable is missing!`))
 
 const env = process.env.NODE_ENV || 'development';
 const RedisStore = connectRedis(session);
@@ -69,7 +68,7 @@ app.get('/:dashboard', (req, res) => {
 app.post('/rebuild', (req, res) => {
   const url = `https://circleci.com/api/v1.1/project/github/${
     req.body.buildUri
-  }/retry`;
+    }/retry`;
 
   request({
     method: 'POST',

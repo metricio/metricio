@@ -34,6 +34,23 @@ function getBuildDetails(build) {
   });
 }
 
+function getPullRequestName({ owner, reponame, githubPR }) {
+  if (!owner || !reponame || !githubPR) return {}
+
+  const uri = `https://api.github.com/repos/${owner}/${reponame}/pulls/${githubPR}`;
+
+  console.log(uri)
+
+  return request({
+    ...requestOptions,
+    uri,
+    auth: {
+      user: process.env.GITHUB_USER,
+      pass: process.env.GITHUB_TOKEN,
+    },
+  });
+}
+
 function getGravatar(email) {
   const hash = crypto
     .createHash('md5')
@@ -43,7 +60,7 @@ function getGravatar(email) {
   return `https://www.gravatar.com/avatar/${hash}?s=512&default=retro`;
 }
 
-export const interval = '*/2 * * * *';
+export const interval = '*/10 * * * * *';
 
 function getProjects() {
   const endpoint = 'https://circleci.com/api/v1.1/projects';
@@ -62,8 +79,7 @@ export const perform = async () => {
   const recentBuilds = await getRecentBuilds(80);
   const projects = await getProjects();
 
-  const isSamePullRequestAs = a => b =>
-    a.branch === b.branch && a.reponame === b.reponame;
+  const isSamePullRequestAs = a => b => a.branch === b.branch && a.reponame === b.reponame;
 
   const builds = recentBuilds.reduce((allBuilds, build) => {
     if (!allBuilds.some(isSamePullRequestAs(build))) {
@@ -75,6 +91,7 @@ export const perform = async () => {
         commitHash: build.vcs_revision,
         buildStatus: build.status,
         branch: build.branch,
+        owner: build.username,
         reponame: build.reponame,
         githubPR: build.branch.split('pull/')[1]
           ? parseInt(build.branch.split('pull/')[1], 10)
@@ -86,12 +103,12 @@ export const perform = async () => {
   }, []);
 
   const enrichedBuilds = await Promise.all(builds.map(async build => {
+    build.prTitle = (await getPullRequestName(build)).title;
+
     if (build.buildStatus === 'failed') {
       build.failedStep = (await getBuildDetails(build))
         .steps.find(step => step.actions.find(action => action.failed))
         .name;
-
-      console.log('\n\n\n\n\n\n', build.failedStep);
     }
     return build;
   }));

@@ -27,5 +27,18 @@
   grid-gap: 1rem;
   // margin: 0 auto;
   max-width: 100vw;
-  padding: 1rem;
+}
+
+#content {
+  min-height: 100vw;
+}
+
+.project-checkboxes {
+  margin-bottom: 1.5em;
+
+  div {
+    display: inline;
+
+    & + div { margin-left: 3em }
+  }
 }
