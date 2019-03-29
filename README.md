@@ -1,63 +1,50 @@
-[![Build Status](https://semaphoreci.com/api/v1/dannycroft/metricio-2/branches/master/badge.svg)](https://semaphoreci.com/dannycroft/metricio-2) [![Maintainability](https://api.codeclimate.com/v1/badges/3aa92baa68a935fc8c3a/maintainability)](https://codeclimate.com/github/metricio/metricio/maintainability) [![Support](https://img.shields.io/badge/gitter-developer_chat-46bc99.svg)](https://gitter.im/metricio/support) [![Docs](https://img.shields.io/badge/docs-passing-green.svg)](https://metricio.co)
+First, [create a personal API token](https://circleci.com/account/api).
 
-![Metricio](https://res.cloudinary.com/metricio/image/upload/v1510160215/logo_gvdwrr.png)
+## Run on your VM
 
-Metricio [(🔊)](https://res.cloudinary.com/metricio/video/upload/v1508691679/metricio_b4nmgk.mp3 "pronunciation") is a dashboard framework that helps you display metrics and monitor
-systems and APIs.
+Using this docker-compose.yml:
+```yml
+metricio:
+  container_name: circle-ci-wall-metricio
+  image: epages/circle-ci-wall:latest
+  links:
+    - "redis:redis"
+  ports:
+    - "8009:3000"
+  restart: "always"
+  environment:
+    REDIS_SERVER_HOST: "redis"
+    CIRCLE_CI_TOKEN: $CIRCLE_CI_TOKEN
 
-Simple to get started and quick to create build screens for all your teams.
+redis:
+  container_name: circle-ci-wall-redis
+  image: redis:latest
+  restart: "always"
+```
 
-Metricio has a similar design and architecture to [Dashing](http://dashing.io/), which used to be my "goto" framework for dashboards. Unfortunately, Dashing is [no longer maintained](https://github.com/Shopify/dashing/issues/711). However, if you have a preference to writing CoffeeScript and Ruby then that framework is still awesome!
+Just run the following commands:
 
-Metricio allows you to:
+```sh
+export CIRCLE_CI_TOKEN=<your-token>
+docker-compose up -d
+```
 
-- Build **widgets** with React components
-- Create **jobs** with Node.js and **async/await**
-- Support for multiple **dashboards**
-- CRON like scheduling with [node-scheduler](https://github.com/node-schedule/node-schedule)
-- Caching handled with [Redis](https://redis.io/)
-- Event-based communication with [socket.io](https://socket.io/)
-- Number formatting with [Numeral](http://numeraljs.com/)
 
-The UI aims to use a little resource as possible. Enabling your dashboards to run without crashing for prolonged lengths of time on even the most neglected Raspberry Pi.
+## Local development
+1. `git clone https://github.com/depoulo/Circle-CI-Wall.git && cd Circle-CI-Wall`
+1. `npm install`
+1. `export CIRCLE_CI_TOKEN=<your-token>` (see above)
+1. `npm start`
+
+## Contributing
+1. fork project
+1. hack around
+1. `npm run lint`
+1. `npm test`
+1. push your changes
+1. open a pull request
 
 ####  See the [Docs](https://metricio.co) for requirements, setup and customisation.
-
-![Example](https://res.cloudinary.com/metricio/image/upload/v1510160088/demo_qvrjcv.gif)
-
-### Install
-
-```
-npm install
-```
-
-### Start - Develop
-
-```
-npm run start
-```
-
-### Test
-
-```
-npm run test
-```
-
-### Start - Production
-
-```
-npm run production
-```
-
-### Lint Project
-
-```
-npm run lint
-```
-
-### Contributing
-
-Any help is welcomed and appreciated.
 
 ## License
 Distributed under the [MIT license](LICENSE)
