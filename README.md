@@ -28,6 +28,8 @@ Just run the following commands:
 
 ```sh
 export CIRCLE_CI_TOKEN=<your-token>
+export GITHUB_USER=<your-user-name>
+export GITHUB_TOKEN=<your-token>
 docker-compose up -d
 ```
 
