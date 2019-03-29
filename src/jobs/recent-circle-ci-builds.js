@@ -39,8 +39,6 @@ function getPullRequestName({ owner, reponame, githubPR }) {
 
   const uri = `https://api.github.com/repos/${owner}/${reponame}/pulls/${githubPR}`;
 
-  console.log(uri)
-
   return request({
     ...requestOptions,
     uri,

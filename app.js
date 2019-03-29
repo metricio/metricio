@@ -14,7 +14,7 @@ import socketIo from 'socket.io';
 import startJobs from './lib/jobs';
 import webpackMiddleWare from './webpack.middleware';
 
-['CIRCLE_CI_TOKEN', 'GITHUB_USER', 'GITHUB_TOKEN'].forEach(env => env || logger('warn', `${env} environment variable is missing!`))
+['CIRCLE_CI_TOKEN', 'GITHUB_USER', 'GITHUB_TOKEN'].forEach(env => process.env[env] || logger('warn', `${env} environment variable is missing!`));
 
 const env = process.env.NODE_ENV || 'development';
 const RedisStore = connectRedis(session);
