@@ -58,7 +58,7 @@ function getGravatar(email) {
   return `https://www.gravatar.com/avatar/${hash}?s=512&default=retro`;
 }
 
-export const interval = '*/10 * * * * *';
+export const interval = '*/30 * * * * *';
 
 function getProjects() {
   const endpoint = 'https://circleci.com/api/v1.1/projects';
@@ -74,10 +74,10 @@ function getProjects() {
 }
 
 export const perform = async () => {
-  const recentBuilds = await getRecentBuilds(80);
+  const recentBuilds = await getRecentBuilds(100);
   const projects = await getProjects();
 
-  const isSamePullRequestAs = a => b => a.branch === b.branch && a.reponame === b.reponame;
+  const isSamePullRequestAs = a => b => !a.workflows && !b.workflows && a.branch === b.branch && a.reponame === b.reponame;
 
   const builds = recentBuilds.reduce((allBuilds, build) => {
     if (!allBuilds.some(isSamePullRequestAs(build))) {
@@ -100,14 +100,18 @@ export const perform = async () => {
     return allBuilds;
   }, []);
 
-  const enrichedBuilds = await Promise.all(builds.map(async build => {
-    build.prTitle = (await getPullRequestName(build)).title;
-
+  const buildsWithFailureDetails = await Promise.all(builds.slice(0, 10).map(async build => {
     if (build.buildStatus === 'failed') {
       build.failedStep = (await getBuildDetails(build))
         .steps.find(step => step.actions.find(action => action.failed))
         .name;
     }
+
+    return build;
+  }));
+
+  const buildsWithPrTitle = await Promise.all(buildsWithFailureDetails.map(async build => {
+    build.prTitle = (await getPullRequestName(build)).title;
     return build;
   }));
 
@@ -116,7 +120,7 @@ export const perform = async () => {
       target: 'RecentCiBuilds',
       data: {
         projects,
-        builds: enrichedBuilds,
+        builds: buildsWithPrTitle,
       },
     },
   ];
