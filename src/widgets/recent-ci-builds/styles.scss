@@ -20,25 +20,33 @@
   }
 }
 
-.ci-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
-  // grid-auto-rows: minmax(15rem, auto);
-  grid-gap: 1rem;
-  // margin: 0 auto;
-  max-width: 100vw;
+#content {
+  --gutter: 2em;
+  font-size: 18px;
+  min-height: 100vh;
+  padding: 0 var(--gutter) var(--gutter);
+  overflow: hidden;
 }
 
-#content {
-  min-height: 100vh;
+.ci-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(var(--gutter) / -2);
+
+  > * {
+    flex: 1 0 35em;
+    margin: calc(var(--gutter) / 2);
+  }
 }
 
 .project-checkboxes {
-  margin-bottom: 1.5em;
+  padding: calc(var(--gutter) * .8) 0 var(--gutter);
 
-  div {
+  *:first-child::after { content: ':' }
+
+  * {
     display: inline;
 
-    & + div { margin-left: 3em }
+    & + div { margin-left: var(--gutter) }
   }
 }

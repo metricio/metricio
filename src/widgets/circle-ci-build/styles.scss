@@ -14,7 +14,7 @@
 
 .widget__circleCIBuild.widget__circleCIBuild_tile {
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: .3em;
   position: relative;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   display: flex;
@@ -22,10 +22,14 @@
   justify-content: space-between;
 }
 
+.widget__circleCIBuild {
+  --padding: .8em;
+}
+
 .tile-title {
   border-bottom: 1px solid gray;
-  padding: 10px;
-  border-radius: 5px 5px 0 0px;
+  padding: var(--padding);
+  border-radius: .3em .3em 0;
 }
 
 .tile-title--success {
@@ -67,26 +71,26 @@
 
 .tile-title-control {
   float: right;
-  margin-top: 10px;
+  margin-top: .5em;
 }
 
 .tile-title-control-rebuild {
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  padding: 8px;
-  width: 110px;
+  padding: .5em;
+  width: 12em;
 }
 
 .tile-footer {
   overflow: hidden;
   position: relative;
-  padding: 5px;
+  padding: var(--padding);
   border-top: 1px solid gray;
   bottom: 0;
   width: 100%;
 }
 
 .tile-footer-status {
-  float: left;
+  display: inline;
 }
 
 .tile-footer-icons {
@@ -94,7 +98,7 @@
 }
 
 .tile-body {
-  padding: 5px;
+  padding: var(--padding);
 }
 
 .tile-body-comment a {

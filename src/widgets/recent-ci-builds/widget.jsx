@@ -11,7 +11,7 @@ const ProjectCheckboxes = ({
   handleCheck,
 }) => (
   <div className="project-checkboxes">
-    <h2>Project list</h2>
+    <h3>Project list</h3>
     {projects.map(p => (
       <div key={p.reponame}>
         <input

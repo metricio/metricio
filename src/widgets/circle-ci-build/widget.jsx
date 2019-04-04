@@ -51,6 +51,7 @@ export default class CircleCIBuild extends React.Component {
       commitHash,
       failedStep,
       branch,
+      workflowSteps,
     } = this.props;
 
     const classList = classNames(
@@ -98,11 +99,18 @@ export default class CircleCIBuild extends React.Component {
         </div>
 
         <div className="tile-footer">
-          <div className="tile-footer-status">{buildStatus + (failedStep ? ` at "${failedStep}"` : '')}</div>
+          <div className="tile-footer-status">
+            {
+              workflowSteps && workflowSteps.length > 1
+                ? workflowSteps.map(({ name, buildStatus }) => `"${name}": ${buildStatus}`).join(', ')
+                : buildStatus + (failedStep ? ` at "${failedStep}"` : '')
+            }
+          </div>
           <div className="tile-footer-icons">
             {githubPR && (
               <a
                 href={`https://github.com/ePages-de/${reponame}/pull/${githubPR}`}
+                target="_blank"
               >
                 <svg
                   height="32"
@@ -119,6 +127,7 @@ export default class CircleCIBuild extends React.Component {
             )}
             <a
               href={`https://circleci.com/gh/ePages-de/${reponame}/${circleCiJob}`}
+              target="_blank"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

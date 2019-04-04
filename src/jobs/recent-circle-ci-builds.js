@@ -73,34 +73,78 @@ function getProjects() {
   return request(options);
 }
 
+function newToOld(a, b) {
+  const [left, right] = [a, b].map(
+    x => new Date(x.queued_at || x.stop_time || x.start_time).getTime()
+  );
+  if (left < right) return 1;
+  if (left > right) return -1;
+  return 0;
+}
+
 export const perform = async () => {
   const recentBuilds = await getRecentBuilds(100);
   const projects = await getProjects();
 
-  const isSamePullRequestAs = a => b => !a.workflows && !b.workflows && a.branch === b.branch && a.reponame === b.reponame;
+  const builds = Object.values(recentBuilds.reduce((allBuilds, build) => {
+    const {
+      stop_time, start_time, queued_at,
+      author_name, author_email,
+      build_num,
+      subject,
+      vcs_revision,
+      status,
+      branch,
+      username, reponame,
+      build_url,
+      workflows,
+    } = build
 
-  const builds = recentBuilds.reduce((allBuilds, build) => {
-    if (!allBuilds.some(isSamePullRequestAs(build))) {
-      allBuilds.push({
-        authorAvatar: getGravatar(build.author_email),
-        author: build.author_name,
-        circleCiJob: build.build_num,
-        commitMessage: build.subject,
-        commitHash: build.vcs_revision,
-        buildStatus: build.status,
-        branch: build.branch,
-        owner: build.username,
-        reponame: build.reponame,
-        githubPR: build.branch.split('pull/')[1]
-          ? parseInt(build.branch.split('pull/')[1], 10)
-          : null,
-        buildUrl: build.build_url,
-      });
+    const key = (workflows || {}).workflow_id || (reponame + branch);
+
+    // skip all but the most recnt workflow builds for the same branch
+    if (workflows && Object.values(allBuilds).find(
+      b => b.reponame === reponame
+        && b.branch === branch
+        && b.workflow_id !== workflows.workflow_id
+    )
+    ) {
+      return allBuilds;
     }
-    return allBuilds;
-  }, []);
 
-  const buildsWithFailureDetails = await Promise.all(builds.slice(0, 10).map(async build => {
+    return {
+      ...allBuilds,
+      [key]: {
+        ...allBuilds[key],
+        workflow_id: (workflows || {}).workflow_id || null,
+        workflowSteps: workflows
+          ? [
+            ...((allBuilds[key] || {}).workflowSteps || []),
+            {
+              name: workflows.job_name,
+              buildStatus: status,
+            },
+          ]
+          : null,
+        authorAvatar: getGravatar(author_email),
+        author: author_name,
+        circleCiJob: build_num,
+        commitMessage: subject,
+        commitHash: vcs_revision,
+        buildStatus: status,
+        branch,
+        owner: username,
+        reponame,
+        stop_time, start_time, queued_at,
+        githubPR: branch.split('pull/')[1]
+          ? parseInt(branch.split('pull/')[1], 10)
+          : null,
+        buildUrl: build_url,
+      }
+    }
+  }, {})).sort(newToOld);
+
+  const buildsWithFailureDetails = await Promise.all(builds.slice(0, 12).map(async build => {
     if (build.buildStatus === 'failed') {
       build.failedStep = (await getBuildDetails(build))
         .steps.find(step => step.actions.find(action => action.failed))
