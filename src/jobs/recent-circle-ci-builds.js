@@ -82,6 +82,26 @@ function newToOld(a, b) {
   return 0;
 }
 
+function getMostSevereStatus(workflowSteps) {
+  const statusBySeverity = [
+    'success',
+    'fixed',
+    'canceled',
+    'scheduled',
+    'running',
+    'failed',
+  ]
+
+  function bySeverity(a, b) {
+    const [left, right] = [a, b].map(x => statusBySeverity.indexOf(x.buildStatus))
+    if (left < right) return 1;
+    if (left > right) return -1;
+    return 0;
+  }
+
+  return workflowSteps.sort(bySeverity)[0].buildStatus
+}
+
 export const perform = async () => {
   const recentBuilds = await getRecentBuilds(100);
   const projects = await getProjects();
@@ -112,26 +132,28 @@ export const perform = async () => {
       return allBuilds;
     }
 
+    const workflowSteps = workflows
+      ? [
+        ...((allBuilds[key] || {}).workflowSteps || []),
+        {
+          name: workflows.job_name,
+          buildStatus: status,
+        },
+      ]
+      : null;
+
     return {
       ...allBuilds,
       [key]: {
         ...allBuilds[key],
         workflow_id: (workflows || {}).workflow_id || null,
-        workflowSteps: workflows
-          ? [
-            ...((allBuilds[key] || {}).workflowSteps || []),
-            {
-              name: workflows.job_name,
-              buildStatus: status,
-            },
-          ]
-          : null,
+        workflowSteps,
         authorAvatar: getGravatar(author_email),
         author: author_name,
         circleCiJob: build_num,
         commitMessage: subject,
         commitHash: vcs_revision,
-        buildStatus: status,
+        buildStatus: workflows ? getMostSevereStatus(workflowSteps) : status,
         branch,
         owner: username,
         reponame,
@@ -145,7 +167,7 @@ export const perform = async () => {
   }, {})).sort(newToOld);
 
   const buildsWithFailureDetails = await Promise.all(builds.slice(0, 12).map(async build => {
-    if (build.buildStatus === 'failed') {
+    if (build.buildStatus === 'failed' && !build.workflowSteps) {
       build.failedStep = (await getBuildDetails(build))
         .steps.find(step => step.actions.find(action => action.failed))
         .name;
