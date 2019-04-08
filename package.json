@@ -30,7 +30,7 @@
     "classnames": "^2.2.5",
     "codecov": "^3.0.1",
     "connect-redis": "^3.3.3",
-    "css-loader": "^0.28.11",
+    "css-loader": "^1.0.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
