@@ -52,7 +52,7 @@ function getPullRequestName({ owner, reponame, githubPR }) {
 function getGravatar(email) {
   const hash = crypto
     .createHash('md5')
-    .update(email)
+    .update(String(email)) // could be null
     .digest('hex');
 
   return `https://www.gravatar.com/avatar/${hash}?s=512&default=retro`;
@@ -74,6 +74,8 @@ function getProjects() {
 }
 
 function newToOld(a, b) {
+  if (a.reponame === b.reponame) return a.circleCiJob < b.circleCiJob ? 1 : -1;
+
   const [left, right] = [a, b].map(
     x => new Date(x.queued_at || x.stop_time || x.start_time).getTime()
   );
