@@ -124,11 +124,11 @@ export const perform = async () => {
 
     const key = (workflows || {}).workflow_id || (reponame + branch);
 
-    // skip all but the most recnt workflow builds for the same branch
-    if (workflows && Object.values(allBuilds).find(
+    // skip all but the most recent builds for the same branch
+    if (Object.values(allBuilds).find(
       b => b.reponame === reponame
         && b.branch === branch
-        && b.workflow_id !== workflows.workflow_id
+        && (!workflows || b.workflow_id !== workflows.workflow_id)
     )
     ) {
       return allBuilds;
