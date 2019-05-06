@@ -102,7 +102,7 @@ export default class CircleCIBuild extends React.Component {
           <div className="tile-footer-status">
             {
               workflowSteps && workflowSteps.length > 1
-                ? workflowSteps.map(({ name, buildStatus }) => `"${name}": ${buildStatus}`).join(', ')
+                ? workflowSteps.map(({ name, buildStatus, failedStep }) => `"${name}": ${buildStatus + (failedStep ? ` at "${failedStep}"` : '')}`).join(', ')
                 : buildStatus + (failedStep ? ` at "${failedStep}"` : '')
             }
           </div>

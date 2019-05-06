@@ -140,6 +140,8 @@ export const perform = async () => {
         {
           name: workflows.job_name,
           buildStatus: status,
+          circleCiJob: build_num,
+          reponame,
         },
       ]
       : null;
@@ -169,10 +171,18 @@ export const perform = async () => {
   }, {})).sort(newToOld);
 
   const buildsWithFailureDetails = await Promise.all(builds.slice(0, 12).map(async build => {
-    if (build.buildStatus === 'failed' && !build.workflowSteps) {
-      build.failedStep = (await getBuildDetails(build))
-        .steps.find(step => step.actions.find(action => action.failed))
-        .name;
+    if (build.buildStatus === 'failed') {
+      if (build.workflowSteps) {
+        for await (const step of build.workflowSteps)
+          step.failedStep = ((await getBuildDetails(step))
+            .steps.find(step => step.actions.find(action => action.failed)) || {})
+            .name;
+
+      } else {
+        build.failedStep = (await getBuildDetails(build))
+          .steps.find(step => step.actions.find(action => action.failed))
+          .name;
+      }
     }
 
     return build;
