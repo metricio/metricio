@@ -1,4 +1,4 @@
-FROM epages/bob:node10 as base
+FROM epages/bob:node12 as base
 
 # create workspace for/as `node` user
 USER node
