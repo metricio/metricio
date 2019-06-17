@@ -52,6 +52,7 @@ export default class CircleCIBuild extends React.Component {
       failedStep,
       branch,
       workflowSteps,
+      workflow_id,
     } = this.props;
 
     const classList = classNames(
@@ -126,7 +127,11 @@ export default class CircleCIBuild extends React.Component {
               </a>
             )}
             <a
-              href={`https://circleci.com/gh/ePages-de/${reponame}/${circleCiJob}`}
+              href={
+                workflow_id
+                  ? `https://circleci.com/workflow-run/${workflow_id}`
+                  : `https://circleci.com/gh/ePages-de/${reponame}/${circleCiJob}`
+              }
               target="_blank"
             >
               <svg

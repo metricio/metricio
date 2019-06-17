@@ -41,6 +41,7 @@ docker-compose up -d
 1. `export GITHUB_USER=<your-user-name>` (see above)
 1. `export GITHUB_TOKEN=<your-token>` (see above)
 1. `npm start`
+1. navigate to http://localhost:3000
 
 ## Contributing
 1. fork project
