@@ -66,11 +66,12 @@ app.get('/:dashboard', (req, res) => {
 });
 
 app.post('/rebuild', (req, res) => {
-  const url = `https://circleci.com/api/v1.1/project/github/${
-    req.body.buildUri
-    }/retry`;
+  const url = `https://circleci.com/api/v1.1/project/github/${req.body.owner}/${req.body.reponame}/build`;
 
   request({
+    body: {
+      branch: req.body.branch,
+    },
     method: 'POST',
     uri: url,
     qs: {

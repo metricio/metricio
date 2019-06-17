@@ -22,17 +22,21 @@ export default class CircleCIBuild extends React.Component {
     buildUrl: PropTypes.string.isRequired,
   };
 
-  rebuild = e => {
+  rebuild = () => {
+    const { owner, reponame, branch } = this.props;
+
     fetch('/rebuild', {
       method: 'POST',
       body: JSON.stringify({
-        buildUri: this.props.buildUrl.replace('https://circleci.com/gh/', ''),
+        owner,
+        reponame,
+        branch
       }), // data can be `string` or {object}!
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then(response => {
+      .then(() => {
         this.setState({ isRebuilding: true });
       })
       .catch(error => console.error('Error:', error));
