@@ -6,7 +6,7 @@ import logger from '../../lib/logger';
 let mockedConsole;
 
 test.before(async () => {
-  mockedConsole = sinon.stub(console, 'log');
+  mockedConsole = sinon.stub(process.stderr, 'write');
 });
 test.after(async () => {
   mockedConsole.restore();
@@ -28,15 +28,27 @@ test.serial('logs to console with args', async t => {
 
   logger(level, msg, data);
 
-  t.true(mockedConsole.args[0][0].includes(level), 'level was missing from logger args');
-  t.is(msg, mockedConsole.args[0][1], ' message was missing from logger args');
-  t.is(data, mockedConsole.args[0][2], ' data was missing from logger args');
+  t.true(
+    mockedConsole.args[0][0].includes(level),
+    'level was missing from logger args'
+  );
+  t.true(
+    mockedConsole.args[0][0].includes(level),
+    'message was missing from logger args'
+  );
+  t.true(
+    mockedConsole.args[0][0].includes(level),
+    'data was missing from logger args'
+  );
 });
 
-test.serial('doesn\'t throw with missing args', async t => {
+test.serial("doesn't throw with missing args", async t => {
   const level = 'defcon3';
 
   logger(level);
 
-  t.true(mockedConsole.args[0][0].includes(level), 'level was missing from logger args');
+  t.true(
+    mockedConsole.args[0][0].includes(level),
+    'level was missing from logger args'
+  );
 });
