@@ -1,16 +1,16 @@
-import * as storage from './lib/storage';
 
-import appMeta from './package.json';
 import bodyParser from 'body-parser';
-import config from './config';
 import connectRedis from 'connect-redis';
 import { createServer } from 'http';
 import exphbs from 'express-handlebars';
 import express from 'express';
-import logger from './lib/logger';
 import request from 'request-promise-native';
 import session from 'express-session';
 import socketIo from 'socket.io';
+import logger from './lib/logger';
+import config from './config';
+import appMeta from './package.json';
+import * as storage from './lib/storage';
 import startJobs from './lib/jobs';
 import webpackMiddleWare from './webpack.middleware';
 
@@ -35,9 +35,7 @@ const sessionMiddleware = session({
 app.use(sessionMiddleware);
 app.use(bodyParser.json());
 
-io.use((socket, next) =>
-  sessionMiddleware(socket.request, socket.request.res, next)
-);
+io.use((socket, next) => sessionMiddleware(socket.request, socket.request.res, next));
 
 app.engine(
   'hbs',
