@@ -132,7 +132,7 @@ export default class CircleCIBuild extends React.Component {
             )}
             <a
               href={
-                workflow_id
+                workflowSteps && workflowSteps.length > 1
                   ? `https://circleci.com/workflow-run/${workflow_id}`
                   : `https://circleci.com/gh/ePages-de/${reponame}/${circleCiJob}`
               }
