@@ -172,7 +172,7 @@ export const perform = async () => {
 
   const buildsWithFailureDetails = await Promise.all(builds.slice(0, 12).map(async build => {
     if (build.buildStatus === 'failed') {
-      if (build.workflowSteps) {
+      if (build.workflowSteps && build.workflowSteps.length > 1) {
         for await (const step of build.workflowSteps)
           step.failedStep = ((await getBuildDetails(step))
             .steps.find(step => step.actions.find(action => action.failed)) || {})
