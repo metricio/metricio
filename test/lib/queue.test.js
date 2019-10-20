@@ -18,8 +18,8 @@ const ResqueQueue = proxyquire('../../lib/queue', {
 const queue = ResqueQueue(JOBS);
 
 test('connects and ends', async t => {
-  await t.notThrows(queue.connect());
-  await t.notThrows(queue.end());
+  await t.notThrows(() => queue.connect());
+  await t.notThrows(() => queue.end());
 });
 
 test('sets jobs', async t => {

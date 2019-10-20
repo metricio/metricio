@@ -1,4 +1,4 @@
 {
-  "presets": ["es2015", "react"],
-  "plugins": [["resolver", { "resolveDirs": ["", "node_modules"] }, "transform-es2015-modules-commonjs"]]
+  "plugins": ["@babel/plugin-proposal-class-properties"],
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
 }

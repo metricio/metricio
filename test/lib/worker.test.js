@@ -19,9 +19,10 @@ const JOBS = {
 const worker = ResqueWorker(QUEUES, JOBS);
 
 test('can connect, start and end', async t => {
-  await t.notThrows(worker.connect());
-  await t.notThrows(worker.start());
-  await t.notThrows(worker.end());
+  await t.notThrows(() => worker.connect());
+  await t.notThrows(() => worker.start());
+  await new Promise(resolve => setTimeout(resolve, 0));
+  await t.notThrows(() => worker.end());
 });
 
 test('sets jobs', async t => {

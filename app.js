@@ -1,16 +1,20 @@
-import { createServer } from 'http';
-import express from 'express';
-import exphbs from 'express-handlebars';
-import session from 'express-session';
-import connectRedis from 'connect-redis';
-import socketIo from 'socket.io';
 
-import webpackMiddleWare from './webpack.middleware';
-import appMeta from './package.json';
-import config from './config';
+import bodyParser from 'body-parser';
+import connectRedis from 'connect-redis';
+import { createServer } from 'http';
+import exphbs from 'express-handlebars';
+import express from 'express';
+import request from 'request-promise-native';
+import session from 'express-session';
+import socketIo from 'socket.io';
 import logger from './lib/logger';
+import config from './config';
+import appMeta from './package.json';
 import * as storage from './lib/storage';
 import startJobs from './lib/jobs';
+import webpackMiddleWare from './webpack.middleware';
+
+['CIRCLE_CI_TOKEN', 'GITHUB_USER', 'GITHUB_TOKEN'].forEach(env => process.env[env] || logger('warn', `${env} environment variable is missing!`));
 
 const env = process.env.NODE_ENV || 'development';
 const RedisStore = connectRedis(session);
@@ -29,6 +33,7 @@ const sessionMiddleware = session({
 });
 
 app.use(sessionMiddleware);
+app.use(bodyParser.json());
 
 io.use((socket, next) => sessionMiddleware(socket.request, socket.request.res, next));
 
@@ -38,7 +43,7 @@ app.engine(
     defaultLayout: 'index',
     extname: '.hbs',
     layoutsDir: 'src/views/',
-  }),
+  })
 );
 
 app.set('view engine', 'hbs');
@@ -56,6 +61,26 @@ app.get('/:dashboard', (req, res) => {
     name: req.params.dashboard,
     layout: false,
   });
+});
+
+app.post('/rebuild', (req, res) => {
+  const url = `https://circleci.com/api/v1.1/project/github/${
+    req.body.buildUri
+    }/retry`;
+
+  request({
+    method: 'POST',
+    uri: url,
+    qs: {
+      'circle-token': process.env.CIRCLE_CI_TOKEN,
+    },
+    headers: {
+      'User-Agent': 'Metricio - CircleCI',
+    },
+    json: true,
+  })
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
 });
 
 if (process.env.NODE_ENV === 'production') {

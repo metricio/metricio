@@ -12,7 +12,8 @@ const ResqueScheduler = proxyquire('../../lib/scheduler', {
 const scheduler = ResqueScheduler();
 
 test('connects, starts and ends', async t => {
-  await t.notThrows(scheduler.connect());
-  await t.notThrows(scheduler.start());
-  await t.notThrows(scheduler.end());
+  await t.notThrows(() => scheduler.connect());
+  await t.notThrows(() => scheduler.start());
+  await new Promise(resolve => setTimeout(resolve, 0));
+  await t.notThrows(() => scheduler.end());
 });
