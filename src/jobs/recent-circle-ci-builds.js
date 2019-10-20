@@ -23,7 +23,7 @@ function getRecentBuilds(limit = 10) {
 }
 
 function getBuildDetails(build) {
-  const uri = `https://circleci.com/api/v1.1/project/github/ePages-de/${build.reponame}/${build.circleCiJob}`;
+  const uri = `https://circleci.com/api/v1.1/project/github/${build.owner}/${build.reponame}/${build.circleCiJob}`;
 
   return request({
     ...requestOptions,
@@ -124,6 +124,11 @@ export const perform = async () => {
 
     const key = (workflows || {}).workflow_id || (reponame + branch);
 
+    if (!branch) {
+      // if build does not contains branch (e.g. tag build)
+      return allBuilds
+    }
+
     // skip all but the most recent builds for the same branch
     if (Object.values(allBuilds).find(
       b => b.reponame === reponame
@@ -174,7 +179,7 @@ export const perform = async () => {
     if (build.buildStatus === 'failed') {
       if (build.workflowSteps && build.workflowSteps.length > 1) {
         for await (const step of build.workflowSteps)
-          step.failedStep = ((await getBuildDetails(step))
+          step.failedStep = ((await getBuildDetails(build))
             .steps.find(step => step.actions.find(action => action.failed)) || {})
             .name;
 
