@@ -17,6 +17,7 @@ metricio:
     CIRCLE_CI_TOKEN: $CIRCLE_CI_TOKEN
     GITHUB_USER: $GITHUB_USER
     GITHUB_TOKEN: $GITHUB_TOKEN
+    GITHUB_ORG: $GITHUB_ORG
 
 redis:
   container_name: circle-ci-wall-redis
@@ -30,6 +31,7 @@ Just run the following commands:
 export CIRCLE_CI_TOKEN=<your-token>
 export GITHUB_USER=<your-user-name>
 export GITHUB_TOKEN=<your-token>
+export GITHUB_ORG=<github-organization>
 docker-compose up -d
 ```
 
@@ -40,6 +42,7 @@ docker-compose up -d
 1. `export CIRCLE_CI_TOKEN=<your-token>` (see above)
 1. `export GITHUB_USER=<your-user-name>` (see above)
 1. `export GITHUB_TOKEN=<your-token>` (see above)
+1. `export GITHUB_ORG=<github-org>` (see above)
 1. `npm start`
 1. navigate to http://localhost:3000
 

@@ -129,6 +129,12 @@ export const perform = async () => {
       return allBuilds
     }
 
+    const GITHUB_ORG = process.env['GITHUB_ORG']
+    if (GITHUB_ORG && username !== GITHUB_ORG) {
+      return allBuilds;
+    }
+
+
     // skip all but the most recent builds for the same branch
     if (Object.values(allBuilds).find(
       b => b.reponame === reponame
