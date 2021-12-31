@@ -4,13 +4,30 @@
     font-size: 3.75rem;
   }
 
-  &.widget--success {
+  &.widget--success, &.widget--stable {
     background-color: #4cbf55;
   }
 
-  &.widget--fail {
+  &.widget--fail, &.widget--failure {
     background-color: #f42a2a;
   }
+
+  &.widget--error {
+    background-color: #d22af4;
+  }
+
+  &.widget--aborted {
+    background-color: #f08f8f;
+  }
+  
+  &.widget--unstable {
+    background-color: #d56e00;
+  }
+ 
+  &.widget--not_built {
+    background-color: #797979;
+  }
+  
 }
 
 .widget__buildStatus.widget--medium {
@@ -18,4 +35,15 @@
     padding: 0.625rem 0 0;
     font-size: 4.8rem;
   }
+}
+
+.widget__subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 200;
+  color: #fff;
+}
+
+.widget__longtitle {
+  font-size: 1.55rem; 
 }

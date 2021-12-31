@@ -18,7 +18,7 @@ export const perform = async () => [{
 {
   target: 'DemoMaster',
   data: {
-    outcome: 'success',
+    outcome: 'failure',
   },
 },
 {
