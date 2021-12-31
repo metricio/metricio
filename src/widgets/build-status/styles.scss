@@ -8,7 +8,7 @@
     background-color: #4cbf55;
   }
 
-  &.widget--failure {
+  &.widget--fail, &.widget--failure {
     background-color: #f42a2a;
   }
 
